@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB83EED3-7125-4EA3-AE02-4190003D7399}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tools.Lib</RootNamespace>
+    <AssemblyName>Tools.Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MenuContext\DesktopIni.cs" />
+    <Compile Include="MenuContext\EncodingType.cs" />
+    <Compile Include="MenuContext\FileExtension.cs" />
+    <Compile Include="MenuContext\GuidInfo.cs" />
+    <Compile Include="MenuContext\IconResource.cs" />
+    <Compile Include="MenuContext\AppConfig.cs" />
+    <Compile Include="MenuContext\AppImage.cs" />
+    <Compile Include="MenuContext\IniReader.cs" />
+    <Compile Include="MenuContext\IniWriter.cs" />
+    <Compile Include="MenuContext\MenuContextException.cs" />
+    <Compile Include="MenuContext\NativeMethod.cs" />
+    <Compile Include="MenuContext\ObjectPath.cs" />
+    <Compile Include="MenuContext\PathType.cs" />
+    <Compile Include="MenuContext\RegistryExtension.cs" />
+    <Compile Include="MenuContext\RegItems\GroupItem.cs" />
+    <Compile Include="MenuContext\RegItems\GuidBlockedItem.cs" />
+    <Compile Include="MenuContext\RegItems\IEItem.cs" />
+    <Compile Include="MenuContext\RegItems\IEnableItem.cs" />
+    <Compile Include="MenuContext\RegItems\IniItem.cs" />
+    <Compile Include="MenuContext\RegItems\IniNumberItem.cs" />
+    <Compile Include="MenuContext\RegItems\IniStringItem.cs" />
+    <Compile Include="MenuContext\RegItems\IniVisbleItem.cs" />
+    <Compile Include="MenuContext\RegItems\IRestartExplorer.cs" />
+    <Compile Include="MenuContext\RegItems\IValueItem.cs" />
+    <Compile Include="MenuContext\RegItems\OpenWithItem.cs" />
+    <Compile Include="MenuContext\RegItems\RegistryItem.cs" />
+    <Compile Include="MenuContext\RegItems\RegItem.cs" />
+    <Compile Include="MenuContext\RegItems\RegNumberItem.cs" />
+    <Compile Include="MenuContext\RegItems\RegStringItem.cs" />
+    <Compile Include="MenuContext\RegItems\RegVisbleItem.cs" />
+    <Compile Include="MenuContext\RegItems\SendToItem.cs" />
+    <Compile Include="MenuContext\RegItems\SeparatorItem.cs" />
+    <Compile Include="MenuContext\RegItems\ShellExItem.cs" />
+    <Compile Include="MenuContext\RegItems\ShellItem.cs" />
+    <Compile Include="MenuContext\RegItems\ShellLink.cs" />
+    <Compile Include="MenuContext\RegItems\ShellNewItem.cs" />
+    <Compile Include="MenuContext\RegItems\StoreItem.cs" />
+    <Compile Include="MenuContext\RegItems\WinXItem.cs" />
+    <Compile Include="MenuContext\RegLists\DetailList.cs" />
+    <Compile Include="MenuContext\RegLists\GuidBlockedList.cs" />
+    <Compile Include="MenuContext\RegLists\IEList.cs" />
+    <Compile Include="MenuContext\RegLists\OpenWithList.cs" />
+    <Compile Include="MenuContext\RegLists\RegistryList.cs" />
+    <Compile Include="MenuContext\RegistryPath.cs" />
+    <Compile Include="MenuContext\RegLists\SendToList.cs" />
+    <Compile Include="MenuContext\RegLists\ShellList.cs" />
+    <Compile Include="MenuContext\RegLists\ShellNewList.cs" />
+    <Compile Include="MenuContext\RegLists\WinXList.cs" />
+    <Compile Include="MenuContext\RegTrustedInstaller.cs" />
+    <Compile Include="MenuContext\Scenes.cs" />
+    <Compile Include="MenuContext\StringResource.cs" />
+    <Compile Include="MenuContext\UwpHelper.cs" />
+    <Compile Include="MenuContext\Win32DLL.cs" />
+    <Compile Include="MenuContext\Win32Struct\AccessTypeMasks.cs" />
+    <Compile Include="MenuContext\Win32Struct\AssocF.cs" />
+    <Compile Include="MenuContext\Win32Struct\AssocStr.cs" />
+    <Compile Include="MenuContext\Win32Struct\FileInfoFlags.cs" />
+    <Compile Include="MenuContext\Win32Struct\LUID.cs" />
+    <Compile Include="MenuContext\Win32Struct\LUID_AND_ATTRIBUTES.cs" />
+    <Compile Include="MenuContext\Win32Struct\PrivilegeAttributes.cs" />
+    <Compile Include="MenuContext\Win32Struct\SHFILEINFO.cs" />
+    <Compile Include="MenuContext\Win32Struct\TokenAccessRights.cs" />
+    <Compile Include="MenuContext\Win32Struct\TOKEN_PRIVILEGES.cs" />
+    <Compile Include="MenuContext\WinOsVersion.cs" />
+    <Compile Include="MenuContext\XmlDicHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

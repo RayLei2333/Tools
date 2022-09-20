@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="Tools.MenuContext.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Tools.MenuContext"
+             xmlns:convert="clr-namespace:Tools.MenuContext.Converters"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <convert:TypeConvert x:Key="Typeof" ></convert:TypeConvert>
+        <convert:IconToImage x:Key="Icon2Image"></convert:IconToImage>
+        <convert:ItemTypeConvert x:Key="ItemType"></convert:ItemTypeConvert>
+        <convert:SeparatorItemConvert x:Key="SeparatorItem"></convert:SeparatorItemConvert>
+    </UserControl.Resources>
+
+    <ScrollViewer Template="{StaticResource Style_Scroll}" VerticalScrollBarVisibility="Auto">
+        <ItemsControl x:Name="ItemList" ItemsSource="{Binding Items}">
+            <ItemsControl.Resources>
+                <Style TargetType="Border" x:Key="Style_Border">
+                    <Setter Property="BorderBrush" Value="#e4e4e4"></Setter>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+                    <Setter Property="Padding" Value="15,8,15,8"></Setter>
+                    <Setter Property="Visibility" Value="Visible"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Register,Converter={StaticResource SeparatorItem}}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="Image" x:Key="Style_ItemIcon">
+                    <Setter Property="Width" Value="32"></Setter>
+                    <Setter Property="Height" Value="32"></Setter>
+                </Style>
+                <Style TargetType="TextBlock" x:Key="Style_ItemText">
+                    <Setter Property="Padding" Value="15,0,0,0"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                </Style>
+                <Style TargetType="Label" x:Key="Style_Expand">
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="Cursor" Value="Hand"></Setter>
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                    <Setter Property="Margin" Value="0,0,15,0"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Register.HasDetail}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#FCB338"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="CheckBox" x:Key="Style_ChildBoolItem" BasedOn="{StaticResource Style_CheckBox}">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource ItemType}}" 
+                                     Value="boolean">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="TextBox" x:Key="Style_TextBox">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                    <Setter Property="Padding" Value="5,3,5,3"></Setter>
+                    <Setter Property="MinWidth" Value="180"></Setter>
+                </Style>
+                <Style TargetType="TextBox" x:Key="Style_ChildStringItem" BasedOn="{StaticResource Style_TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource ItemType}}"
+                                     Value="string">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="TextBox" x:Key="Style_ChildNumberItem" BasedOn="{StaticResource Style_TextBox}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource ItemType}}"
+                                     Value="int">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                <Style TargetType="Border" x:Key="Style_ChildBorder">
+                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsOpen,Mode=OneWay}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Style="{StaticResource Style_Border}">
+                            <Grid DataContext="{Binding }">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"  
+                                       Source="{Binding Register.ItemIcon,Converter={StaticResource Icon2Image}}"
+                                       Style="{StaticResource Style_ItemIcon}"></Image>
+                                <TextBlock Grid.Column="1" 
+                                           Style="{StaticResource Style_ItemText}" 
+                                           Text="{Binding Register.ItemText}"></TextBlock>
+                                <Label Grid.Column="2" 
+                                       Style="{StaticResource Style_Expand}"
+                                       Content="&#xe620;" 
+                                       FontFamily="{StaticResource IconFont}"  
+                                       MouseUp="Expand_OnMouseUp"></Label>
+                                <CheckBox Grid.Column="3" 
+                                          Style="{StaticResource Style_CheckBox}" 
+                                          IsChecked="{Binding Register.IsEnable}" 
+                                          Cursor="Hand"></CheckBox>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1" Style="{StaticResource Style_ChildBorder}" DataContext="{Binding }">
+                            <ItemsControl ItemsSource="{Binding DetailGroup.Items}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="0,0,0,1"
+                                                BorderBrush="#ccc"
+                                                Padding="0,8,15,8"
+                                                Margin="60,0,0,0">
+                                            <Grid DataContext="{Binding }">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" 
+                                                     Style="{StaticResource Style_ItemText}" 
+                                                     Text="{Binding ItemText}">
+                                                </TextBlock>
+                                                <StackPanel Grid.Column="1">
+
+                                                    <CheckBox IsChecked="{Binding IsEnable}" 
+                                                              Style="{StaticResource Style_ChildBoolItem}"
+                                                              Cursor="Hand" ></CheckBox>
+
+                                                    <TextBox Text="{Binding ItemValue}"
+                                                             Style="{StaticResource Style_ChildStringItem}"></TextBox>
+
+                                                    <TextBox Text="{Binding ItemValue}"
+                                                             Style="{StaticResource Style_ChildNumberItem}"></TextBox>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>
